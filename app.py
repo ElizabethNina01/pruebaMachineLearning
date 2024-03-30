@@ -9,7 +9,7 @@ api_key = "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"
 # Crea una instancia del cliente de OpenAI con tu API key
 client = OpenAI(api_key=api_key)
 
-@app.route('/generate', methods=['POST'])
+@app.route('/', methods=['POST'])
 def generate_response():
     prompt = request.json['prompt']
     response = client.chat.completions.create(
@@ -19,4 +19,4 @@ def generate_response():
     return jsonify({"response": response.choices[0].message.content})
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=5000,debug=True)
